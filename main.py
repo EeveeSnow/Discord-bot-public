@@ -8,9 +8,11 @@ nowserver = MinecraftServer.lookup("Your server")
 
 status = nowserver.status()
 
-if status.latency > 0:
     pingnow = status.latency
-    usersConnected = [user['name'] for user in status.raw['players']['sample']]
+    if len(status.raw['players']) >= 3:
+        usersConnected = [user['name'] for user in status.raw['players']['sample']]
+    else:
+        usersConnected = []
 @bot.command()
 async def Connected(ctx):
     embed1 = discord.Embed(color = 0x00e600, title = 'Connected players')
