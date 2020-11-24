@@ -22,7 +22,7 @@ async def Connected(ctx):
     await ctx.send(embed = embed1)
 @bot.command()
 async def full(ctx):
-    embed2 = discord.Embed(color = 0x00e600, title = 'Server Info') # Создание Embed'a
+    embed2 = discord.Embed(color = 0x00e600, title = 'Server Info')
     embed2.add_field(name="Status: online :white_check_mark:", value="** **", inline=False)
     embed2.add_field(name=f"Ip: {nowserver}", value="** **", inline=False)
     embed2.add_field(name=f"Ping: {pingnow}", value="** **", inline=False)
