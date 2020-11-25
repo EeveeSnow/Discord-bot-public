@@ -1,0 +1,3 @@
+name = {
+    "name": "Your server"
+}

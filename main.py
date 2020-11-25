@@ -1,31 +1,21 @@
 import discord
 import time
+
 from discord.ext import commands
-from config import settings
 from mcstatus import MinecraftServer
 
-serveronline = 0
-status = []
-serverip = "Your server"
+from automatic import st
+from servername import name
+from config import settings
+
+
+serverip = name["name"]
 bot = commands.Bot(command_prefix = settings['prefix'])
-nowserver = MinecraftServer.lookup(serverip)
-
-
 @bot.command()
 async def Connected(ctx):
-    try:
-        status = nowserver.status()
-        serveronline = 1
-    except:
-        serveronline = 0
-
-    if serveronline == 1 and status != 0:
-        status = nowserver.status()
-        if len(status.raw['players']) >= 3:
-         usersConnected = [user['name'] for user in status.raw['players']['sample']]
-        else:
-         usersConnected = []
+    serveronline = st["line"]
     if serveronline == 1:
+        usersConnected = st["usersConnected"]
         embed1 = discord.Embed(color = 0x00e600, title = 'Connected players')
         embed1.add_field(name=f"connected player - {len(usersConnected)}:", value="** **", inline=False)
         for i in range(len(usersConnected)):
@@ -37,20 +27,10 @@ async def Connected(ctx):
          await ctx.send(embed = embed1) 
 @bot.command()
 async def full(ctx):
-    try:
-        status = nowserver.status()
-        serveronline = 1
-    except:
-        serveronline = 0
-
-    if serveronline == 1 and status != 0:
-        status = nowserver.status()
-        pingnow = status.latency
-        if len(status.raw['players']) >= 3:
-         usersConnected = [user['name'] for user in status.raw['players']['sample']]
-        else:
-         usersConnected = []
+    serveronline = st["line"]
     if serveronline == 1:
+        pingnow = st["pingnow"]
+        usersConnected = st["usersConnected"]
         embed2 = discord.Embed(color = 0x00e600, title = 'Server Info')
         embed2.add_field(name="Status: online :white_check_mark:", value="** **", inline=False)
         embed2.add_field(name=f"Ip: {serverip}", value="** **", inline=False)
