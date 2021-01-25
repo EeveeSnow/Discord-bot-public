@@ -1,6 +1,6 @@
 settings = {
     'token': 'Your bot token',
     'bot': 'Your bot name',
-    'id': Your bot id,
+    'id': 803257618818793492,
     'prefix': '!'
 }
